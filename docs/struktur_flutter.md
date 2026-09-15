@@ -13,6 +13,7 @@ lib/
 │   ├── constants/          # Warna, ukuran font, path icon/gambar
 │   ├── network/            # Setup dasar API (Dio/HTTP, Interceptor token)
 │   ├── providers/          # Provider Global (misal: ThemeProvider, SessionProvider)
+│   ├── routes/             # Konfigurasi Navigasi / Rute (GoRouter atau Route Names)
 │   ├── utils/              # Fungsi bantuan (misal: format Rupiah)
 │   └── widgets/            # Widget global (misal: CustomButton, LoadingBox)
 │
