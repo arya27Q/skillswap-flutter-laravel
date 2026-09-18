@@ -12,7 +12,7 @@ class AppColors {
     borderRadius: BorderRadius.circular(24),
     boxShadow: [
       BoxShadow(
-        color: darkCharcoal.withOpacity(0.06),
+        color: darkCharcoal.withValues(alpha: 0.06),
         blurRadius: 20,
         spreadRadius: 0,
         offset: const Offset(0, 10),

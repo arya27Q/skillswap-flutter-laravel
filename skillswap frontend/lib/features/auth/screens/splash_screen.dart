@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
-import 'role_selection_screen.dart';
+import 'package:skillswap_frontend/core/constants/app_colors.dart';
+import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,7 +9,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController _pulseController1;
   late AnimationController _pulseController2;
   late AnimationController _pulseController3;
@@ -19,13 +20,13 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    
+
     // Ring 1 (inner): 2.4s -> 1200ms bolak balik
     _pulseController1 = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     )..repeat(reverse: true);
-    
+
     // Ring 2: 3.0s -> 1500ms
     _pulseController2 = AnimationController(
       vsync: this,
@@ -71,16 +72,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-          Navigator.pushReplacement(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) => const RoleSelectionScreen(),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
-              transitionDuration: const Duration(milliseconds: 600),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, AppRoutes.roleSelection);
         },
         child: Stack(
           alignment: Alignment.center,
@@ -90,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.primaryTan.withOpacity(0.09),
+                    AppColors.primaryTan.withValues(alpha: 0.09),
                     Colors.transparent,
                   ],
                   radius: 0.8,
@@ -104,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Spacer(flex: 4),
-                
+
                 // Ring Stack & Logo & Particles terpusat
                 SizedBox(
                   width: 250,
@@ -116,17 +108,41 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                       _buildParticles(),
 
                       // Ring 3 (Outermost)
-                      _buildRing(_pulseController3, 220, 0.95, 1.45, 0.25, 0.04, 1.5),
+                      _buildRing(
+                        _pulseController3,
+                        220,
+                        0.95,
+                        1.45,
+                        0.25,
+                        0.04,
+                        1.5,
+                      ),
                       // Ring 2
-                      _buildRing(_pulseController2, 172, 0.9, 1.3, 0.4, 0.08, 1.5),
+                      _buildRing(
+                        _pulseController2,
+                        172,
+                        0.9,
+                        1.3,
+                        0.4,
+                        0.08,
+                        1.5,
+                      ),
                       // Ring 1 (Inner)
-                      _buildRing(_pulseController1, 130, 0.85, 1.15, 0.6, 0.15, 2.0),
+                      _buildRing(
+                        _pulseController1,
+                        130,
+                        0.85,
+                        1.15,
+                        0.6,
+                        0.15,
+                        2.0,
+                      ),
 
                       // Logo Card squircle dengan gradient
                       AnimatedBuilder(
                         animation: _pulseController1,
                         builder: (context, child) {
-                          final glow = _pulseController1.value * 14.0; 
+                          final glow = _pulseController1.value * 14.0;
                           return Container(
                             width: 100,
                             height: 100,
@@ -139,22 +155,30 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                               borderRadius: BorderRadius.circular(30),
                               boxShadow: [
                                 BoxShadow(
-                                  color: AppColors.primaryTan.withOpacity(0.30),
+                                  color: AppColors.primaryTan.withValues(
+                                    alpha: 0.30,
+                                  ),
                                   blurRadius: 48,
                                   offset: const Offset(0, 20),
                                 ),
                                 BoxShadow(
-                                  color: const Color(0xFF4D332D).withOpacity(0.12),
+                                  color: const Color(0xFF4D332D)
+                                      .withValues(alpha: 0.12),
                                   blurRadius: 12,
                                   offset: const Offset(0, 4),
                                 ),
                                 BoxShadow(
-                                  color: AppColors.primaryTan.withOpacity(0.08),
+                                  color: AppColors.primaryTan.withValues(
+                                    alpha: 0.08,
+                                  ),
                                   blurRadius: 0,
                                   spreadRadius: glow,
                                 ),
                               ],
-                              border: Border.all(color: Colors.white.withOpacity(0.8), width: 1),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.8),
+                                width: 1,
+                              ),
                             ),
                             child: const Center(
                               child: Icon(
@@ -169,9 +193,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 28),
-                
+
                 // Title
                 const Text(
                   'TalentSync',
@@ -183,9 +207,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     height: 1.0,
                   ),
                 ),
-                
+
                 const SizedBox(height: 6),
-                
+
                 // Subtitle
                 const Text(
                   'Belajar \u2022 Berkarya \u2022 Berkembang',
@@ -196,22 +220,25 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     letterSpacing: 0.5,
                   ),
                 ),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Animasi Loading Dots (Sapuan nyala dari kiri ke kanan berulang)
                 AnimatedBuilder(
                   animation: _tapController,
                   builder: (context, child) {
                     // sweepValue gerak bolak-balik dari 0.0 sampai 4.0
                     final sweepingValue = _tapController.value * 4;
-                    
+
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(5, (index) {
                         // Semakin dekat index titiknya dengan sweepValue, semakin solid warnanya
                         final distance = (sweepingValue - index).abs();
-                        final opacity = (1.0 - (distance * 0.5)).clamp(0.2, 1.0);
+                        final opacity = (1.0 - (distance * 0.5)).clamp(
+                          0.2,
+                          1.0,
+                        );
                         final scale = (1.0 - (distance * 0.2)).clamp(0.8, 1.2);
 
                         return Transform.scale(
@@ -221,7 +248,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                             width: 6,
                             height: 6,
                             decoration: BoxDecoration(
-                              color: AppColors.primaryTan.withOpacity(opacity),
+                              color: AppColors.primaryTan.withValues(
+                                alpha: opacity,
+                              ),
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -230,9 +259,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                     );
                   },
                 ),
-                
+
                 const Spacer(flex: 3),
-                
+
                 // Tap anywhere
                 AnimatedBuilder(
                   animation: _tapController,
@@ -243,7 +272,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                       child: Text(
                         'Tap anywhere to continue',
                         style: TextStyle(
-                          color: AppColors.darkCharcoal.withOpacity(0.6),
+                          color: AppColors.darkCharcoal.withValues(alpha: 0.6),
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.3,
@@ -261,13 +290,21 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     );
   }
 
-  Widget _buildRing(AnimationController controller, double size, double minScale, double maxScale, double maxOp, double minOp, double borderWidth) {
+  Widget _buildRing(
+    AnimationController controller,
+    double size,
+    double minScale,
+    double maxScale,
+    double maxOp,
+    double minOp,
+    double borderWidth,
+  ) {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
         final scale = minScale + (controller.value * (maxScale - minScale));
         final opacity = maxOp - (controller.value * (maxOp - minOp));
-        
+
         return Transform.scale(
           scale: scale,
           child: Container(
@@ -276,7 +313,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: AppColors.primaryTan.withValues(alpha: opacity.clamp(0.0, 1.0)),
+                color: AppColors.primaryTan.withValues(
+                  alpha: opacity.clamp(0.0, 1.0),
+                ),
                 width: borderWidth,
               ),
             ),
@@ -288,14 +327,62 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   Widget _buildParticles() {
     final particles = [
-      {'x': 20.0, 'y': 40.0, 'size': 6.0, 'color': AppColors.primaryTan, 'delay': 0.0},
-      {'x': 200.0, 'y': 30.0, 'size': 4.0, 'color': AppColors.tertiaryCaramel, 'delay': 0.15},
-      {'x': 40.0, 'y': 200.0, 'size': 5.0, 'color': AppColors.primaryTan, 'delay': 0.35},
-      {'x': 210.0, 'y': 190.0, 'size': 3.0, 'color': AppColors.primaryTan.withOpacity(0.5), 'delay': 0.60},
-      {'x': 10.0, 'y': 120.0, 'size': 4.0, 'color': AppColors.tertiaryCaramel, 'delay': 0.25},
-      {'x': 230.0, 'y': 130.0, 'size': 5.0, 'color': AppColors.primaryTan, 'delay': 0.70},
-      {'x': 120.0, 'y': 10.0, 'size': 3.0, 'color': AppColors.primaryTan.withOpacity(0.5), 'delay': 0.45},
-      {'x': 130.0, 'y': 230.0, 'size': 4.0, 'color': AppColors.tertiaryCaramel, 'delay': 0.85},
+      {
+        'x': 20.0,
+        'y': 40.0,
+        'size': 6.0,
+        'color': AppColors.primaryTan,
+        'delay': 0.0,
+      },
+      {
+        'x': 200.0,
+        'y': 30.0,
+        'size': 4.0,
+        'color': AppColors.tertiaryCaramel,
+        'delay': 0.15,
+      },
+      {
+        'x': 40.0,
+        'y': 200.0,
+        'size': 5.0,
+        'color': AppColors.primaryTan,
+        'delay': 0.35,
+      },
+      {
+        'x': 210.0,
+        'y': 190.0,
+        'size': 3.0,
+        'color': AppColors.primaryTan.withValues(alpha: 0.5),
+        'delay': 0.60,
+      },
+      {
+        'x': 10.0,
+        'y': 120.0,
+        'size': 4.0,
+        'color': AppColors.tertiaryCaramel,
+        'delay': 0.25,
+      },
+      {
+        'x': 230.0,
+        'y': 130.0,
+        'size': 5.0,
+        'color': AppColors.primaryTan,
+        'delay': 0.70,
+      },
+      {
+        'x': 120.0,
+        'y': 10.0,
+        'size': 3.0,
+        'color': AppColors.primaryTan.withValues(alpha: 0.5),
+        'delay': 0.45,
+      },
+      {
+        'x': 130.0,
+        'y': 230.0,
+        'size': 4.0,
+        'color': AppColors.tertiaryCaramel,
+        'delay': 0.85,
+      },
     ];
 
     return AnimatedBuilder(
@@ -303,15 +390,16 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       builder: (context, child) {
         return Stack(
           children: particles.map((p) {
-            double progress = (_floatController.value + (p['delay'] as double)) % 1.0;
-            
+            double progress =
+                (_floatController.value + (p['delay'] as double)) % 1.0;
+
             double opacity;
             if (progress < 0.5) {
-              opacity = progress * 2.0; 
+              opacity = progress * 2.0;
             } else {
-              opacity = 1.0 - ((progress - 0.5) * 2.0); 
+              opacity = 1.0 - ((progress - 0.5) * 2.0);
             }
-            
+
             double yOffset = -25.0 * progress;
 
             return Positioned(
@@ -320,10 +408,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               child: Transform.translate(
                 offset: Offset(0, yOffset),
                 child: Container(
-                  width: p['size'] as double, 
+                  width: p['size'] as double,
                   height: p['size'] as double,
                   decoration: BoxDecoration(
-                    color: (p['color'] as Color).withOpacity(opacity.clamp(0.0, 1.0)),
+                    color: (p['color'] as Color).withValues(
+                      alpha: opacity.clamp(0.0, 1.0),
+                    ),
                     shape: BoxShape.circle,
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart';
-import 'theme/app_colors.dart';
+import 'package:skillswap_frontend/core/constants/app_colors.dart';
+import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.warmOffWhite,
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      initialRoute: AppRoutes.splash,
+      routes: AppRoutes.routes,
     );
   }
 }

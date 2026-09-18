@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
-import 'student_auth_screen.dart';
-import 'msme_auth_screen.dart';
-import 'mentor_auth_screen.dart';
+import 'package:skillswap_frontend/core/constants/app_colors.dart';
+
+import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 class RoleSelectionScreen extends StatelessWidget {
   const RoleSelectionScreen({super.key});
 
-  Widget _buildRoleCard(BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildRoleCard(
+    BuildContext context,
+    String title,
+    IconData icon,
+    VoidCallback onTap,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       child: InkWell(
@@ -37,7 +41,11 @@ class RoleSelectionScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Icon(Icons.arrow_forward_ios, color: AppColors.tertiaryCaramel, size: 20),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.tertiaryCaramel,
+                size: 20,
+              ),
             ],
           ),
         ),
@@ -56,7 +64,7 @@ class RoleSelectionScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 60),
               const Text(
-                'Welcome to TimeWork',
+                'Welcome to TalentSync',
                 style: TextStyle(
                   fontSize: 20,
                   color: AppColors.tertiaryCaramel,
@@ -78,19 +86,19 @@ class RoleSelectionScreen extends StatelessWidget {
                 context,
                 'Mahasiswa (Student)',
                 Icons.school_rounded,
-                () => Navigator.push(context, MaterialPageRoute(builder: (_) => const StudentAuthScreen())),
+                () => Navigator.pushNamed(context, AppRoutes.studentAuth),
               ),
               _buildRoleCard(
                 context,
                 'UMKM (Business)',
                 Icons.storefront_rounded,
-                () => Navigator.push(context, MaterialPageRoute(builder: (_) => const MsmeAuthScreen())),
+                () => Navigator.pushNamed(context, AppRoutes.msmeAuth),
               ),
               _buildRoleCard(
                 context,
                 'Mentor (Professional)',
                 Icons.work_rounded,
-                () => Navigator.push(context, MaterialPageRoute(builder: (_) => const MentorAuthScreen())),
+                () => Navigator.pushNamed(context, AppRoutes.mentorAuth),
               ),
               const SizedBox(height: 40),
             ],

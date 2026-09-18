@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/app_colors.dart';
+import 'package:skillswap_frontend/core/constants/app_colors.dart';
 
 class SharedAuthLayout extends StatelessWidget {
   final String title;
@@ -88,7 +88,7 @@ Widget buildElevatedButton(String text, VoidCallback onPressed) {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: AppColors.primaryTan.withOpacity(0.3),
+          color: AppColors.primaryTan.withValues(alpha: 0.3),
           blurRadius: 15,
           offset: const Offset(0, 8),
         ),
