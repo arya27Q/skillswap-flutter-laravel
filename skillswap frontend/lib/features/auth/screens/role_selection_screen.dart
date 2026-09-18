@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
-
 import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 class RoleSelectionScreen extends StatelessWidget {
@@ -62,7 +61,20 @@ class RoleSelectionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 60),
+
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.primaryTan),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, AppRoutes.splash);
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
               const Text(
                 'Welcome to TalentSync',
                 style: TextStyle(

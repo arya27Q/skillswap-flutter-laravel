@@ -128,3 +128,70 @@ Widget buildOutlinedButton(String text, VoidCallback onPressed) {
     ),
   );
 }
+
+Widget buildUploadButton(String text, IconData icon, VoidCallback onPressed) {
+  return Container(
+    margin: const EdgeInsets.only(bottom: 20),
+    child: InkWell(
+      onTap: onPressed,
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        decoration: BoxDecoration(
+          color: AppColors.warmOffWhite,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.primaryTan, width: 2, style: BorderStyle.solid),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primaryTan.withValues(alpha: 0.1),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppColors.primaryTan, size: 24),
+            const SizedBox(width: 12),
+            Text(
+              text,
+              style: const TextStyle(
+                color: AppColors.primaryTan,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget buildAuthFooter(String text, String actionText, VoidCallback onActionTap) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 24.0, bottom: 16.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          text,
+          style: const TextStyle(color: Colors.grey, fontSize: 14),
+        ),
+        const SizedBox(width: 4),
+        InkWell(
+          onTap: onActionTap,
+          child: Text(
+            actionText,
+            style: const TextStyle(
+              color: AppColors.primaryTan,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}

@@ -16,10 +16,16 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _pulseController3;
   late AnimationController _floatController;
   late AnimationController _tapController;
+  late AnimationController _fadeController;
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
+    _fadeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _fadeController, curve: Curves.easeIn));
+    _fadeController.forward();
+
 
     // Ring 1 (inner): 2.4s -> 1200ms bolak balik
     _pulseController1 = AnimationController(
@@ -62,6 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
     _pulseController3.dispose();
     _floatController.dispose();
     _tapController.dispose();
+    _fadeController.dispose();
     super.dispose();
   }
 
@@ -69,7 +76,9 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.warmOffWhite,
-      body: GestureDetector(
+      body: FadeTransition(
+        opacity: _fadeAnimation,
+        child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
           Navigator.pushReplacementNamed(context, AppRoutes.roleSelection);
@@ -286,6 +295,7 @@ class _SplashScreenState extends State<SplashScreen>
             ),
           ],
         ),
+      ),
       ),
     );
   }
