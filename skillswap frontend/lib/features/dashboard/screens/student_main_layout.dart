@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
 import 'package:skillswap_frontend/features/dashboard/screens/dashboard_mahasiswa_screen.dart';
 import 'package:skillswap_frontend/features/project/screens/explore_projects_screen.dart';
+import 'package:skillswap_frontend/features/project/screens/my_projects_screen.dart';
 
 class StudentMainLayout extends StatefulWidget {
   const StudentMainLayout({super.key});
@@ -16,7 +17,7 @@ class _StudentMainLayoutState extends State<StudentMainLayout> {
   final List<Widget> _screens = [
     const DashboardMahasiswaScreen(),
     const ExploreProjectsScreen(),
-    const Center(child: Text('Mentoring Tab')),
+    const MyProjectsScreen(),
     const Center(child: Text('Wallet Tab')),
     const Center(child: Text('Profile Tab')),
   ];
@@ -76,7 +77,7 @@ class _StudentMainLayoutState extends State<StudentMainLayout> {
                 children: [
                   _buildNavItem(Icons.home_rounded, 0),
                   _buildNavItem(Icons.search_rounded, 1),
-                  _buildNavItem(Icons.people_rounded, 2),
+                  _buildNavItem(Icons.assignment_rounded, 2),
                   _buildNavItem(Icons.account_balance_wallet_rounded, 3),
                   _buildNavItem(Icons.person_rounded, 4),
                 ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
+import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 class DashboardMahasiswaScreen extends StatelessWidget {
   const DashboardMahasiswaScreen({super.key});
@@ -38,9 +39,14 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Good morning 👋',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        Row(
+                          children: [
+                            Text(
+                              'Good morning ',
+                              style: TextStyle(color: Colors.grey, fontSize: 14),
+                            ),
+                            Icon(Icons.wb_sunny_rounded, color: Colors.orangeAccent, size: 16),
+                          ],
                         ),
                         SizedBox(height: 4),
                         Text(
@@ -181,7 +187,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: _buildStatCard(
-                            Icons.assignment_rounded,
+                            Icons.rocket_launch_rounded,
                             const Color(0xFFE57373),
                             '2',
                             'Active',
@@ -190,7 +196,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                         const SizedBox(width: 16),
                         Expanded(
                           child: _buildStatCard(
-                            Icons.check_circle_rounded,
+                            Icons.verified_rounded,
                             const Color(0xFF81C784),
                             '8',
                             'Completed',
@@ -199,7 +205,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                         const SizedBox(width: 16),
                         Expanded(
                           child: _buildStatCard(
-                            Icons.star_rounded,
+                            Icons.workspace_premium_rounded,
                             const Color(0xFFFFD54F),
                             '4.8',
                             'Rating',
