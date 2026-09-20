@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
+import 'package:skillswap_frontend/features/gamification/widgets/achievement_popup.dart';
 
 class SubmissionScreen extends StatelessWidget {
   const SubmissionScreen({super.key});
@@ -155,32 +156,37 @@ class SubmissionScreen extends StatelessWidget {
                         const SizedBox(height: 32),
                         
                         // Submit Button
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFFB88656), Color(0xFF8C5E3C)],
+                        GestureDetector(
+                          onTap: () {
+                            AchievementPopup.show(context);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFFB88656), Color(0xFF8C5E3C)],
+                              ),
+                              borderRadius: BorderRadius.circular(24),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF8C5E3C).withValues(alpha: 0.4),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 8),
+                                ),
+                              ],
                             ),
-                            borderRadius: BorderRadius.circular(24),
-                            boxShadow: [
-                              BoxShadow(
-                                color: const Color(0xFF8C5E3C).withValues(alpha: 0.4),
-                                blurRadius: 20,
-                                offset: const Offset(0, 8),
-                              ),
-                            ],
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.check_circle_outline_rounded, color: Colors.white),
-                              SizedBox(width: 12),
-                              Text(
-                                'Submit to MSME',
-                                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.check_circle_outline_rounded, color: Colors.white),
+                                SizedBox(width: 12),
+                                Text(
+                                  'Submit to MSME',
+                                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

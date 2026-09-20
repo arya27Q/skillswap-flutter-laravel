@@ -61,9 +61,9 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        _buildHeaderIcon(Icons.chat_bubble_outline_rounded),
+                        _buildHeaderIcon(context, Icons.chat_bubble_outline_rounded, route: AppRoutes.inbox),
                         const SizedBox(width: 12),
-                        _buildHeaderIcon(Icons.notifications_none_rounded),
+                        _buildHeaderIcon(context, Icons.notifications_none_rounded, route: AppRoutes.notifications),
                       ],
                     ),
                   ],
@@ -287,7 +287,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'In Progress',
+                      'Active Workspace',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -295,7 +295,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    _buildInProgressCard(
+                    _buildInProgressCard(context, 
                       'Digitalisasi UMKM Batik Solo',
                       'Batik Nusantara',
                       '5 TC',
@@ -303,7 +303,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                       '68% complete',
                       '5 days left',
                     ),
-                    _buildInProgressCard(
+                    _buildInProgressCard(context, 
                       'Update Katalog Produk',
                       'Toko Kue Enak',
                       'Barter',
@@ -321,14 +321,17 @@ class DashboardMahasiswaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeaderIcon(IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: AppColors.warmOffWhite,
-        borderRadius: BorderRadius.circular(12),
+  Widget _buildHeaderIcon(BuildContext context, IconData icon, {String? route}) {
+    return GestureDetector(
+      onTap: route != null ? () => Navigator.pushNamed(context, route) : null,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: AppColors.warmOffWhite,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(icon, color: AppColors.darkBrown, size: 20),
       ),
-      child: Icon(icon, color: AppColors.darkBrown, size: 20),
     );
   }
 
@@ -491,7 +494,7 @@ class DashboardMahasiswaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInProgressCard(
+  Widget _buildInProgressCard(BuildContext context, 
     String title,
     String client,
     String reward,
@@ -499,113 +502,117 @@ class DashboardMahasiswaScreen extends StatelessWidget {
     String progressText,
     String timeLeft,
   ) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.darkBrown.withValues(alpha: 0.04),
-            blurRadius: 15,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: AppColors.darkBrown,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      client,
-                      style: const TextStyle(color: Colors.grey, fontSize: 13),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: reward == 'Barter'
-                      ? AppColors.warmOffWhite
-                      : const Color(0xFFB88656),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  reward,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: reward == 'Barter'
-                        ? AppColors.darkBrown
-                        : Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          // Progress bar
-          Container(
-            height: 6,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColors.warmOffWhite,
-              borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, AppRoutes.workspaceKanban),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: AppColors.primaryTan.withValues(alpha: 0.3)),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.darkBrown.withValues(alpha: 0.04),
+              blurRadius: 15,
+              offset: const Offset(0, 6),
             ),
-            child: Row(
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: (progress * 100).toInt(),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF8C5E3C), // Solid brown
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: AppColors.darkBrown,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        client,
+                        style: const TextStyle(color: Colors.grey, fontSize: 13),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  flex: ((1 - progress) * 100).toInt(),
-                  child: const SizedBox(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: reward == 'Barter'
+                        ? AppColors.warmOffWhite
+                        : const Color(0xFFB88656),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    reward,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: reward == 'Barter'
+                          ? AppColors.darkBrown
+                          : Colors.white,
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                progressText,
-                style: const TextStyle(color: Colors.grey, fontSize: 12),
+            const SizedBox(height: 24),
+            // Progress bar
+            Container(
+              height: 6,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.warmOffWhite,
+                borderRadius: BorderRadius.circular(10),
               ),
-              Text(
-                timeLeft,
-                style: const TextStyle(color: Colors.grey, fontSize: 12),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: (progress * 100).toInt(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF8C5E3C), // Solid brown
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: ((1 - progress) * 100).toInt(),
+                    child: const SizedBox(),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  progressText,
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+                Text(
+                  timeLeft,
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

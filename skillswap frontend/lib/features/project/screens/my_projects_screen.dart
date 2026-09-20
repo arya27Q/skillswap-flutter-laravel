@@ -143,20 +143,23 @@ class _MyProjectsScreenState extends State<MyProjectsScreen> with SingleTickerPr
                 ),
                 Row(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.darkBrown.withValues(alpha: 0.05),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, AppRoutes.workspaceChat),
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.darkBrown.withValues(alpha: 0.05),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            )
+                          ],
+                        ),
+                        child: const Icon(Icons.chat_bubble_outline_rounded, color: AppColors.darkBrown, size: 20),
                       ),
-                      child: const Icon(Icons.chat_bubble_outline_rounded, color: AppColors.darkBrown, size: 20),
                     ),
                     const SizedBox(width: 12),
                     GestureDetector(

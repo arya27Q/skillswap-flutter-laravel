@@ -12,10 +12,23 @@ import 'package:skillswap_frontend/features/auth/screens/student_setup_profile_s
 import 'package:skillswap_frontend/features/dashboard/screens/student_main_layout.dart';
 import 'package:skillswap_frontend/features/project/screens/my_projects_screen.dart';
 import 'package:skillswap_frontend/features/notifications/screens/notifications_screen.dart';
-import 'package:skillswap_frontend/features/workspace/screens/screen/workspace_kanban_screen.dart';
-import 'package:skillswap_frontend/features/workspace/screens/screen/workspace_chat_screen.dart';
-import 'package:skillswap_frontend/features/workspace/screens/screen/submission_screen.dart';
-
+import 'package:skillswap_frontend/features/workspace/screens/workspace_kanban_screen.dart';
+import 'package:skillswap_frontend/features/workspace/screens/workspace_chat_screen.dart';
+import 'package:skillswap_frontend/features/chat/screens/video_call_screen.dart';
+import 'package:skillswap_frontend/features/workspace/screens/inbox_screen.dart';
+import 'package:skillswap_frontend/features/workspace/screens/submission_screen.dart';
+import 'package:skillswap_frontend/features/portfolio/screens/portfolio_dashboard_screen.dart';
+import 'package:skillswap_frontend/features/portfolio/screens/case_study_screen.dart';
+import 'package:skillswap_frontend/features/wallet/screens/wallet_dashboard_screen.dart';
+import 'package:skillswap_frontend/features/mentoring/screens/find_mentors_screen.dart';
+import 'package:skillswap_frontend/features/mentoring/screens/mentor_profile_screen.dart';
+import 'package:skillswap_frontend/features/mentoring/screens/mentor_chat_screen.dart';
+import 'package:skillswap_frontend/features/mentoring/screens/booking_session_screen.dart';
+import 'package:skillswap_frontend/features/wallet/screens/reward_hub_screen.dart';
+import 'package:skillswap_frontend/features/profile/screens/student_settings_screen.dart';
+import 'package:skillswap_frontend/features/profile/screens/edit_profile_screen.dart';
+import 'package:skillswap_frontend/features/profile/screens/privacy_security_screen.dart';
+import 'package:skillswap_frontend/features/profile/screens/help_support_screen.dart';
 import 'package:skillswap_frontend/features/project/screens/project_detail_screen.dart';
 
 class AppRoutes {
@@ -36,7 +49,21 @@ class AppRoutes {
   static const String notifications = '/notifications';
   static const String workspaceKanban = '/workspace/kanban';
   static const String workspaceChat = '/workspace/chat';
+  static const String videoCall = '/chat/video_call';
+  static const String inbox = '/inbox';
   static const String submission = '/workspace/submission';
+  static const String portfolio = '/portfolio';
+  static const String caseStudy = '/portfolio/case-study';
+  static const String wallet = '/wallet';
+  static const String findMentors = '/mentors';
+  static const String mentorProfile = '/mentors/profile';
+  static const String mentorChat = '/mentors/chat';
+  static const String bookingSession = '/mentors/booking';
+  static const String rewardHub = '/wallet/rewards';
+  static const String settings = '/settings';
+  static const String editProfile = '/settings/edit-profile';
+  static const String privacySecurity = '/settings/privacy-security';
+  static const String helpSupport = '/settings/help-support';
 
 
   // Define Route Map
@@ -58,7 +85,24 @@ class AppRoutes {
     notifications: (context) => const NotificationsScreen(),
     workspaceKanban: (context) => const WorkspaceKanbanScreen(),
     workspaceChat: (context) => const WorkspaceChatScreen(),
+    videoCall: (context) => const VideoCallScreen(),
+    inbox: (context) => const InboxScreen(),
     submission: (context) => const SubmissionScreen(),
+    portfolio: (context) => const PortfolioDashboardScreen(),
+    caseStudy: (context) => const CaseStudyScreen(),
+    wallet: (context) => const WalletDashboardScreen(),
+    findMentors: (context) => const FindMentorsScreen(),
+    mentorProfile: (context) => const MentorProfileScreen(),
+    mentorChat: (context) => const MentorChatScreen(),
+    bookingSession: (context) => const BookingSessionScreen(),
+    rewardHub: (context) => const RewardHubScreen(),
+    settings: (context) => const StudentSettingsScreen(),
+    editProfile: (context) => const EditProfileScreen(),
+    privacySecurity: (context) => const PrivacySecurityScreen(),
+    helpSupport: (context) => const HelpSupportScreen(),
+
+
+
 
   };
 }
