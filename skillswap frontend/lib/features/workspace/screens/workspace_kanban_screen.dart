@@ -223,7 +223,6 @@ class WorkspaceKanbanScreen extends StatelessWidget {
             ),
           ),
           
-          _buildBottomNavBarDummy(context),
         ],
       ),
     );

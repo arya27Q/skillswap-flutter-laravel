@@ -30,7 +30,7 @@ class RewardHubScreen extends StatelessWidget {
             child: Icon(icon, color: color, size: 32),
           ),
           const SizedBox(height: 16),
-          Text(title, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: AppColors.darkBrown)),
+          Text(title, textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: AppColors.darkBrown)),
           const SizedBox(height: 12),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -52,52 +52,9 @@ class RewardHubScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomNavBarDummy(BuildContext context) {
-    return Positioned(
-      left: 24,
-      right: 24,
-      bottom: 24,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.darkBrown.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildNavItem(Icons.home_rounded, false),
-            _buildNavItem(Icons.search_rounded, false),
-            _buildNavItem(Icons.people_rounded, false),
-            _buildNavItem(Icons.account_balance_wallet_rounded, true),
-            _buildNavItem(Icons.person_rounded, false),
-          ],
-        ),
-      ),
-    );
-  }
+ 
 
-  Widget _buildNavItem(IconData icon, bool isActive) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: isActive ? AppColors.primaryTan : Colors.transparent,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        icon,
-        color: isActive ? Colors.white : Colors.grey.shade400,
-        size: 26,
-      ),
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +108,7 @@ class RewardHubScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
-                    childAspectRatio: 0.85,
+                    childAspectRatio: 0.72,
                     children: [
                       _buildRewardCard('MSME Coffee Voucher', '15', Icons.coffee_rounded, const Color(0xFF795548)),
                       _buildRewardCard('Premium Mentoring (1 hr)', '30', Icons.workspace_premium_rounded, const Color(0xFF1976D2)),
@@ -163,8 +120,6 @@ class RewardHubScreen extends StatelessWidget {
               ],
             ),
           ),
-          
-          _buildBottomNavBarDummy(context),
         ],
       ),
     );

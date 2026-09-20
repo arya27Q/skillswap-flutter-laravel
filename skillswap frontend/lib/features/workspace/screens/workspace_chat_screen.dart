@@ -329,8 +329,6 @@ class _WorkspaceChatScreenState extends State<WorkspaceChatScreen> {
                 _buildChatInput(),
                 
                 const SizedBox(height: 16),
-                _buildBottomNavBarDummy(context),
-                
                 const SizedBox(height: 24),
               ],
             ),
