@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skillswap_frontend/core/constants/app_colors.dart';
 
 class VideoCallScreen extends StatelessWidget {
   const VideoCallScreen({super.key});

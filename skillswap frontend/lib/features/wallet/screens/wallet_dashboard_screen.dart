@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
-import 'package:skillswap_frontend/core/widgets/gradient_background.dart';
 import 'package:skillswap_frontend/core/routes/app_routes.dart';
+import 'transfer_screen.dart';
 
 class WalletDashboardScreen extends StatelessWidget {
   const WalletDashboardScreen({super.key});
@@ -139,37 +139,25 @@ class WalletDashboardScreen extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.swap_horiz_rounded, color: Colors.white, size: 20),
-                                  SizedBox(width: 8),
-                                  Text('Transfer', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryTan,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.add_rounded, color: Colors.white, size: 20),
-                                  SizedBox(width: 8),
-                                  Text('Top Up', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                                ],
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => const TransferScreen()));
+                              },
+                              borderRadius: BorderRadius.circular(16),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.swap_horiz_rounded, color: Colors.white, size: 20),
+                                    SizedBox(width: 8),
+                                    Text('Transfer', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

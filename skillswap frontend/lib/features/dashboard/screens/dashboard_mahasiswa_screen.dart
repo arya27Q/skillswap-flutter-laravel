@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skillswap_frontend/core/constants/app_colors.dart';
+import '../../wallet/screens/transfer_screen.dart';
+import '../../wallet/screens/history_screen.dart';
 import 'package:skillswap_frontend/core/routes/app_routes.dart';
 
 class DashboardMahasiswaScreen extends StatelessWidget {
@@ -170,11 +172,17 @@ class DashboardMahasiswaScreen extends StatelessWidget {
                           const SizedBox(height: 24),
                           Row(
                             children: [
-                              Expanded(child: _buildWalletButton('Top Up')),
+                              Expanded(
+                                child: _buildWalletButton('Transfer', onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => const TransferScreen()));
+                                }),
+                              ),
                               const SizedBox(width: 12),
-                              Expanded(child: _buildWalletButton('Transfer')),
-                              const SizedBox(width: 12),
-                              Expanded(child: _buildWalletButton('History')),
+                              Expanded(
+                                child: _buildWalletButton('History', onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => const HistoryScreen()));
+                                }),
+                              ),
                             ],
                           ),
                         ],
@@ -335,23 +343,27 @@ class DashboardMahasiswaScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildWalletButton(String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.3),
-          width: 1,
+  Widget _buildWalletButton(String text, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white.withValues(alpha: 0.3),
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(16),
         ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 13,
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 13,
+            ),
           ),
         ),
       ),

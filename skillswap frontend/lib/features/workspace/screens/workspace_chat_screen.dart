@@ -179,41 +179,7 @@ class _WorkspaceChatScreenState extends State<WorkspaceChatScreen> {
     );
   }
 
-  Widget _buildBottomNavBarDummy(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(40),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.darkBrown.withValues(alpha: 0.1),
-              blurRadius: 20,
-              offset: const Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildNavItem(Icons.home_outlined),
-            _buildNavItem(Icons.work_outline_rounded),
-            _buildNavItem(Icons.chat_bubble_outline_rounded),
-            _buildNavItem(Icons.account_balance_wallet_outlined),
-            _buildNavItem(Icons.person_outline_rounded),
-          ],
-        ),
-      );
-  }
-
-  Widget _buildNavItem(IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: const BoxDecoration(color: Colors.transparent, shape: BoxShape.circle),
-      child: Icon(icon, color: Colors.grey.shade400, size: 26),
-    );
-  }
+  
 
   @override
   Widget build(BuildContext context) {
